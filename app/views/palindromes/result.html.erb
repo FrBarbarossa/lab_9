@@ -1,0 +1,20 @@
+<h3>Таблица с результатами</h3>
+Введенное диапазон: [0, <%= @number %>]
+
+
+    <table class = "tab">
+        <tr>
+        <th>Число</th>
+        <th>Квадрат числа</th>
+        </tr>
+        <% @result.each do |elem|%>
+        <tr>
+            <td><%= elem %></td>
+            <td><%= elem**2 %></td>
+        </tr>
+        <% end %>
+    </table>
+
+Количество таких чисел
+<p id="counter"><%= @result.size %></p>
+<%= link_to "Вернуться назад", home_path, remote: true %>
