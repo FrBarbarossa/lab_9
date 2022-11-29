@@ -14,11 +14,13 @@
   </head>
 
   <body>
+    <div id='arlt'>
       <% flash.each do |type, msg| %>
       <div class='alert alert-info'>
         <%= msg %>
       </div>
     <% end %>
+    </div>
     <%= yield %>
   </body>
 </html>

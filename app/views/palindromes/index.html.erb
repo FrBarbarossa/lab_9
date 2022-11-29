@@ -1,4 +1,4 @@
-<%= form_with url: "/palindromes/result" do |form| %>
+<%= form_with url: "/palindromes/result", data: { behavior: "autosave" } do |form| %>
   <%= number_field_tag :number, class: 'form-control', id: 'number' %> <br/>
   <%= submit_tag("Найти", id: 'btn') %>
 	<% end %>
