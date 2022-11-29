@@ -12,8 +12,8 @@ class PalindromesController < ApplicationController
     def result
       # redirect_to '/palindromes.js' unless flash.empty?
       # p flash
-      redirect_to '/'  unless flash.empty?
-  
+      # redirect_to '/'  unless flash.empty?
+      format.turbo_stream { render turbo_stream: turbo_stream.replace("flash", partial: "layouts/flash", locals: { flash: flash }) }
       p flash[:notice]
       return unless flash.empty?
   

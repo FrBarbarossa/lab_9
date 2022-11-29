@@ -14,12 +14,10 @@
   </head>
 
   <body>
-    <div id='arlt'>
-      <% flash.each do |type, msg| %>
-      <div class='alert alert-info'>
-        <%= msg %>
-      </div>
-    <% end %>
+    <div id='alrt'>
+      <%= turbo_frame_tag "flash" do %>
+        <%= render "layouts/flash" %>
+      <% end %>
     </div>
     <%= yield %>
   </body>
