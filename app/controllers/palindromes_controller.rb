@@ -3,6 +3,7 @@
 # Controller for /palindromes
 class PalindromesController < ApplicationController
     before_action :check_num, only: :result
+    after_action :clear_flash, only: :result
   
   
     def index
@@ -11,12 +12,12 @@ class PalindromesController < ApplicationController
   
     def result
       # redirect_to '/palindromes.js' unless flash.empty?
-      # p flash
+      p flash
       # redirect_to '/'  unless flash.empty?
-      format.turbo_stream { render turbo_stream: turbo_stream.replace("flash", partial: "layouts/flash", locals: { flash: flash }) }
-      p flash[:notice]
+      render turbo_stream: turbo_stream.update("flash", partial: "layouts/flash") unless flash.empty?
+      p flash.empty?
       return unless flash.empty?
-  
+      p '!!!'
       @result = count_result(params[:number])
       respond_to do |format|
         format.html
@@ -29,6 +30,10 @@ class PalindromesController < ApplicationController
     end
   
     private
+
+    def clear_flash
+      flash.discard
+    end
   
     def check_num
       number = params[:number]

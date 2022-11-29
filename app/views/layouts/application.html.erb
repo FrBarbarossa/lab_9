@@ -15,9 +15,8 @@
 
   <body>
     <div id='alrt'>
-      <%= turbo_frame_tag "flash" do %>
-        <%= render "layouts/flash" %>
-      <% end %>
+      <div id='flash'>
+      </div>
     </div>
     <%= yield %>
   </body>
