@@ -1,0 +1,7 @@
+<%= form_with url: "/palindromes/result" do |form| %>
+  <%= number_field_tag :number, class: 'form-control', id: 'number' %> <br/>
+  <%= submit_tag("Найти", id: 'btn') %>
+	<% end %>
+  </table>
+
+<div id="result"></div>
