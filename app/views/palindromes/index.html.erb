@@ -1,50 +1,7 @@
-
-    <script>
-        function submit_form () {
-            res_url = "/palindromes.json";
-            var number = document.getElementById("number").value;
-            var addition_params  = "?" + "number=" + number;
-            console.log("!");
-            
-            var response = new XMLHttpRequest(); 
-            response.open("GET", res_url + addition_params, true);
-
-            response.onreadystatechange = function () {
-                var done = 4, ok = 200;
-                if (response.readyState == done && response.status == ok) {
-                    var my_JSON_object = JSON.parse(response.responseText);
-                    var table_head = "<table class=\"table\"><tr><th>Порядкорвый номер</th><th>Число (палиндром)</th><th>Квадрат числа (палиндром)</th></tr>";
-                    for (var i = 0; i<my_JSON_object.value.length; i++){
-                        console.log(i);
-                        table_head += "<tr>"
-                        table_head += "<td>"+ (i + 1) +"</td>";
-                        table_head += "<td>"+ my_JSON_object.value[i][0] +"</td>";
-                        table_head += "<td>"+ my_JSON_object.value[i][1] +"</td>";
-                        table_head += "</tr>"
-                    }
-                    table_head += "</table>"
-                    document.getElementById("result").innerHTML = table_head;
-                }
-                };
-                response.send(null);            
-        }
-    </script>
-<%= form_tag("/palindromes/result.json", :method => "get", remote:true, id:'pal_form', class: 'form-control') do %>
+<%= form_with url: "/palindromes/result" do |form| %>
   <%= number_field_tag :number, class: 'form-control', id: 'number' %> <br/>
   <%= submit_tag("Найти", id: 'btn') %>
-<% end %>
-
+	<% end %>
+  </table>
 
 <div id="result"></div>
-
-<br>
-<table class = "tab">
-  <tr class = 'bord'>
-    <th class = 'bord'>Число</th>
-    <th class = 'bord'>Квадрат числа</th>
-  </tr>
-    <tbody id="result">
-    </tbody>
-</table>
-<p><div id="counter"></div></p>
-<p><div id="data"></div></p>

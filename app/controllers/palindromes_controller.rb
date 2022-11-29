@@ -2,16 +2,11 @@
 
 # Controller for /palindromes
 class PalindromesController < ApplicationController
-    # protect_from_forgery
     before_action :check_num, only: :result
   
   
     def index
-        respond_to do |format|
-            format.html
-            format.js 
-        end
-      @result = params[:result]
+
     end
   
     def result
@@ -25,7 +20,7 @@ class PalindromesController < ApplicationController
       @result = count_result(params[:number])
       respond_to do |format|
         format.html
-        format.js 
+        format.turbo_stream 
         format.json do
           render json:
             { type: @result.class.to_s, value: @result }
@@ -34,10 +29,6 @@ class PalindromesController < ApplicationController
     end
   
     private
-  
-    # def clear_flash
-    #   flash.discard
-    # end
   
     def check_num
       number = params[:number]
