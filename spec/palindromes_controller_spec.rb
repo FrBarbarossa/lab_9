@@ -34,24 +34,6 @@ RSpec.describe PalindromesController, type: :request do
   end
 end
 
-RSpec.describe PalindromesController, type: :controller do
-  describe "check json get" do
-    context "correct number requested" do
-      render_views
-
-      it 'has code 200' do
-        post :result, :params => {:format => :json, :number => 100 }
-        expect(response.status).to eq(200)
-      end
-      it 'returns correct json' do
-        post :result, :params => {:format => :json, :number => 100 }
-        expect(JSON.parse(response.body)["value"]).to eq([[1, 1], [2, 4], [3, 9], [11, 121], [22, 484]])
-      end
-    end
-  end
-end
-
-
 # Попытка заполнить форму с помощью AJAX #3
 RSpec.describe "Result table management attempt №3",:js => true, :type => :system do
   before do
